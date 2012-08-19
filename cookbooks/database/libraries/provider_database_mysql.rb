@@ -36,7 +36,7 @@ class Chef
           unless exists?
             begin
               Chef::Log.debug("#{@new_resource}: Creating database #{new_resource.database_name}")
-              db.query("create database #{new_resource.database_name}")
+              db.query("create database `#{new_resource.database_name}`")
               @new_resource.updated_by_last_action(true)
             ensure
               close
@@ -48,7 +48,7 @@ class Chef
           if exists?
             begin
               Chef::Log.debug("#{@new_resource}: Dropping database #{new_resource.database_name}")
-              db.query("drop database #{new_resource.database_name}")
+              db.query("drop database `#{new_resource.database_name}`")
               @new_resource.updated_by_last_action(true)
             ensure
               close
